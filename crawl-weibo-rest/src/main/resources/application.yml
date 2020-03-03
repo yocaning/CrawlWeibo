@@ -12,72 +12,9 @@ spring:
     max-request-size: 50MB
     # 调用链追踪采集比例，上报地址在配置中心
   sleuth.sampler.probability: 1
-  # 数据源 数据源地址在配置中心
-#  datasource:
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    druid:
-#      initial-size: 5
-#      min-idle: 5
-#      max-active: 200
-#      max-wait: 60000
-#      timeBetweenEvictionRunsMillis: 60000
-#      minEvictableIdleTimeMillis: 300000
-#      validationQuery: SELECT 'x'
-#      testWhileIdle: true
-#      testOnBorrow: false
-#      testOnReturn: false
-#      poolPreparedStatements: false
-  # 缓存方案
-  cache:
-    type: redis
-    # redis连接池配置
-  redis.lettuce.pool:
-    max-idle: 8
-    min-idle: 1
-    max-active: 8
-    max-wait: 5s
-    # zipkin上报形式，必须配置
-  zipkin.sender.type: web
-  # 错误的Url直接抛出异常，方便处理
   mvc:
     throw-exception-if-no-handler-found: true
   resources:
     add-mappings: false
   main:
     allow-bean-definition-overriding: true
-
-weibo:
-  app-key: 1395361290
-  app-secret: 55af55909143400f3f57e8d554c1ffd4
-
-
-#spring boot admin
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: '*'
-#  endpoint:
-#    health:
-#      show-details: ALWAYS
-
-# apollo config
-app.id: crawl-weibo-rest
-#apollo:
-#  # metaServer地址，服务端通过metaServer找到configServer列表，从而获取配置更新信息
-#  # metaServer是逻辑上独立的，但是实际上与configServer绑定，故此处地址与configServer相同
-#  # 开发环境配置中心
-#  meta: http://172.16.1.67:8080,http://172.16.1.68:8080
-#  # 本地缓存路径，注意启动项目前确保该目录存在
-#  cacheDir: ../app_data/apollo_cache
-#  bootstrap:
-#    enabled: true
-#    namespaces: application,TEST1.public_config
-
-# mybatis plus配置
-#mybatis-plus:
-#  mapper-locations: classpath*:mybatis/mapper/*.xml
-#  type-aliases-package: com.yocan.crewl.weibo.dto
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
