@@ -21,7 +21,7 @@ Crawl Someone's Weibo text (for quick get and quickview )
     - 参数为ParamDto
         - 示例：{"userUrl":"https://weibo.com/p/1005051646174132/home?from=page_100505_profile&wvr=6&mod=data&is_all=1#place","weChatUrl":"https://sc.ftqq.com/SCU40692Tccb6b97f9f07146f0b5ac909ca1bfcf35c3c6e3cd17d2.send?text="}
 - 效果图
-    - ![公众号](.idea/41583203175_.pic.jpg "效果图")
+    - ![公众号](crawl-weibo-rest/src/main/resources/41583203175_.pic.jpg "效果图")
 ***
 - 后续
     - 期待做成通过OAuth授权调用weibo api的做法来获取用户微博内容
