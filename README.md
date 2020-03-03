@@ -31,4 +31,4 @@ Crawl Someone's Weibo text (for quick get and quickview )
     -    [【server酱】](http://sc.ftqq.com/3.version)
     
 - 赞赏
-    -
+    - 2
