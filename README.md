@@ -19,7 +19,8 @@ Crawl Someone's Weibo text (for quick get and quickview )
         - localhost:11176/crawl/weiBo 为单次获取
         - localhost:11176/crawl/weiBo/keep 为持续获取，每隔10分钟查看一次
     - 参数为ParamDto
-        - 示例：{"userUrl":"https://weibo.com/p/1005051646174132/home?from=page_100505_profile&wvr=6&mod=data&is_all=1#place","weChatUrl":"https://sc.ftqq.com/SCU40692Tccb6b97f9f07146f0b5ac909ca1bfcf35c3c6e3cd17d2.send?text="}
+        - 示例：
+        ```{"userUrl":"https://weibo.com/p/1005051646174132/home?from=page_100505_profile&wvr=6&mod=data&is_all=1#place","weChatUrl":"https://sc.ftqq.com/SCU40692Tccb6b97f9f07146f0b5ac909ca1bfcf35c3c6e3cd17d2.send?text="}```
 - 效果图
     - ![公众号](crawl-weibo-rest/src/main/resources/41583203175_.pic.jpg "效果图")
 ***
