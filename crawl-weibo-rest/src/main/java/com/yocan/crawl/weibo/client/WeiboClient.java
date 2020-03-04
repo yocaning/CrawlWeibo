@@ -138,8 +138,10 @@ public class WeiboClient {
         while (true){
             String s = WeiboClient.get_byCookie(url, "1");
             List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid("5432850602", "1");
-            RestTemplate restTemplate = new RestTemplate();
-            restTemplate.getForEntity(wechatUrl + weiboReptiles.get(1).getContext(), String.class);
+            if (weiboReptiles.size()>=2){
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getForEntity(wechatUrl + weiboReptiles.get(1).getContext(), String.class);
+            }
             try {
                 Thread.sleep(1000 * 60 * 10);
             } catch (InterruptedException e) {
