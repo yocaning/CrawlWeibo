@@ -28,12 +28,9 @@ import static com.sun.xml.internal.fastinfoset.stax.events.XMLConstants.ENCODING
 public class WeiboClient {
 
     /**
-     * 微博免登陆请求客户端
-     *
-     * @author fullstackyang
+     * 缓存已发消息，避免重复发送
      */
-    private volatile String cookie = "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-9A-_M-FG0sfHjin_jQI1L6DBUD-oOCc8d63Yb_oX1-w.; SUB=_2A25zWWvDDeRhGeNK6FAZ9S7Kyz6IHXVQonWLrDV6PUNbktANLXDnkW1NSXnchDH6LTcNqHzwxcvXm564YYiZghwd; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWGvD4XfyDAIqmHOLkO111u5JpX5KMhUgL.Fo-Xe0zRSK5cehz2dJLoIXnLxKqL1hnL1K2LxKqL1KnLB-qLxK-LBKBLBKMLxK-LBKBLBKMLxK-LBKBLBKMLxK-LBKBLBKMLxKML12-L12zLxK-L1KzLB.qt; SUHB=0OM0fFV9HZDkdn; SSOLoginState=1583160211";
-
+    private volatile String msg ="";
 
     /**
      * 基于HttpClient 4.3的通用Get方法--微博Cookie
@@ -43,7 +40,7 @@ public class WeiboClient {
      */
     public static String get_byCookie(String url, String cookie) {
         if (cookie.equals("1")) {
-            cookie = "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-_vSiCccwl19WMqn8RLcPyw23oZo_VRqZWQeRdXycUWI.; SUB=_2A25zWWvDDeRhGeNK6FAZ9S7Kyz6IHXVQL9oLrDV8PUNbmtAfLUjxkW9NSXnchHfGtW1p9SKLd-aDneocDb8MxhJ1; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWGvD4XfyDAIqmHOLkO111u5JpX5KMhUgL.Fo-Xe0zRSK5cehz2dJLoIXnLxKqL1hnL1K2LxKqL1KnLB-qLxK-LBKBLBKMLxK-LBKBLBKMLxK-LBKBLBKMLxK-LBKBLBKMLxKML12-L12zLxK-L1KzLB.qt; SUHB=0qjkWrClLhT3cq; ALF=1614696207; webim_unReadCount=%7B%22time%22%3A1583198237025%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A0%2C%22allcountNum%22%3A1%2C%22msgbox%22%3A0%7D";
+            cookie = "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-DzpfT_VcsM0rDtwOhRYyYFKI4tftavGPvS4rMnGWm5Q.; SUB=_2A25zW3ecDeRhGeNK6FAZ9S7Kyz6IHXVQEe5UrDV8PUNbmtAfLRHgkW9NSXnchG0KrQ01hy5sjy99wNhdJgnI39yf; SUHB=0nl-P7iOgtSxUT; YF-Page-G0=20a0c65c6e2ee949c1f78305a122073b|1583286221|1583286215";
         }
         CloseableHttpClient client = HttpClients.createDefault();
         String responseText = "";
@@ -81,7 +78,7 @@ public class WeiboClient {
     public static List<MvcWeiboReptile> get_js_html_byuid(String uid, String cookie) {
         //默认无数据
         if (cookie.equals("1")) {
-            cookie = "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-_vSiCccwl19WMqn8RLcPyw23oZo_VRqZWQeRdXycUWI.; SUB=_2A25zWWvDDeRhGeNK6FAZ9S7Kyz6IHXVQL9oLrDV8PUNbmtAfLUjxkW9NSXnchHfGtW1p9SKLd-aDneocDb8MxhJ1; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9WWGvD4XfyDAIqmHOLkO111u5JpX5KMhUgL.Fo-Xe0zRSK5cehz2dJLoIXnLxKqL1hnL1K2LxKqL1KnLB-qLxK-LBKBLBKMLxK-LBKBLBKMLxK-LBKBLBKMLxK-LBKBLBKMLxKML12-L12zLxK-L1KzLB.qt; SUHB=0qjkWrClLhT3cq; ALF=1614696207; webim_unReadCount=%7B%22time%22%3A1583198237025%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A0%2C%22allcountNum%22%3A1%2C%22msgbox%22%3A0%7D";
+            cookie = "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-DzpfT_VcsM0rDtwOhRYyYFKI4tftavGPvS4rMnGWm5Q.; SUB=_2A25zW3ecDeRhGeNK6FAZ9S7Kyz6IHXVQEe5UrDV8PUNbmtAfLRHgkW9NSXnchG0KrQ01hy5sjy99wNhdJgnI39yf; SUHB=0nl-P7iOgtSxUT; YF-Page-G0=20a0c65c6e2ee949c1f78305a122073b|1583286221|1583286215";
         }
         List<MvcWeiboReptile> weiboReptileList = new ArrayList<>();
         StringBuffer stringBuffer = new StringBuffer();
@@ -138,9 +135,11 @@ public class WeiboClient {
         while (true){
             String s = WeiboClient.get_byCookie(url, "1");
             List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid("5432850602", "1");
-            if (weiboReptiles.size()>=2){
+            // 确保超过2条（除首页外还有一条最新），且最新消息没有推送过，如推送过不再推送
+            if (weiboReptiles.size()>=2 && !msg.equals(weiboReptiles.get(1).getContext())){
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getForEntity(wechatUrl + weiboReptiles.get(1).getContext(), String.class);
+                msg =weiboReptiles.get(1).getContext();
             }
             try {
                 Thread.sleep(1000 * 60 * 10);
