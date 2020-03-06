@@ -8,4 +8,6 @@ public class ParamDto {
     private String userUrl;
 
     private String weChatUrl;
+
+    private String cookie;
 }

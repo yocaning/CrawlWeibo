@@ -40,7 +40,7 @@ public class WeiboClient {
      * @return 提交响应
      */
     public static String get_byCookie(String url, String cookie) {
-        if (cookie.equals("1")) {
+        if ("1".equals(cookie)) {
             cookie =
 "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-DzpfT_VcsM0rDtwOhRYyYFKI4tftavGPvS4rMnGWm5Q.; SUB=_2A25zW3ecDeRhGeNK6FAZ9S7Kyz6IHXVQEe5UrDV8PUNbmtAfLRHgkW9NSXnchG0KrQ01hy5sjy99wNhdJgnI39yf; SUHB=0nl-P7iOgtSxUT; UOR=www.dahepiao.com,widget.weibo.com,login.sina.com.cn; webim_unReadCount=%7B%22time%22%3A1583288980935%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A0%2C%22allcountNum%22%3A3%2C%22msgbox%22%3A0%7D";       }
         CloseableHttpClient client = HttpClients.createDefault();
@@ -78,9 +78,6 @@ public class WeiboClient {
      */
     public static List<MvcWeiboReptile> get_js_html_byuid(String cookie) {
         //默认无数据
-        if (cookie.equals("1")) {
-            cookie =
-                    "SCF=ApaZZIFhzwZli4y-vPAyVRZkOUyDhLZcvk-LByWeRR8-DzpfT_VcsM0rDtwOhRYyYFKI4tftavGPvS4rMnGWm5Q.; SUB=_2A25zW3ecDeRhGeNK6FAZ9S7Kyz6IHXVQEe5UrDV8PUNbmtAfLRHgkW9NSXnchG0KrQ01hy5sjy99wNhdJgnI39yf; SUHB=0nl-P7iOgtSxUT; UOR=www.dahepiao.com,widget.weibo.com,login.sina.com.cn; webim_unReadCount=%7B%22time%22%3A1583288980935%2C%22dm_pub_total%22%3A0%2C%22chat_group_client%22%3A0%2C%22allcountNum%22%3A3%2C%22msgbox%22%3A0%7D";       }
         List<MvcWeiboReptile> weiboReptileList = new ArrayList<>();
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append(WeiboClient.get_byCookie("https://weibo.com/p/1005051646174132/home?from=page_100505_profile&wvr=6&mod=data&is_all=1#place", cookie));
@@ -124,18 +121,18 @@ public class WeiboClient {
     }
 
 
-    public void getText(String url, String wechatUrl) {
-            String s = WeiboClient.get_byCookie(url, "1");
-            List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid("1");
+    public void getText(String url, String wechatUrl,String cookie) {
+            List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid(cookie);
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getForEntity(wechatUrl + weiboReptiles.get(1).getContext(), String.class);
     }
 
-
-    public void getTextUtil(String url, String wechatUrl) {
+    /**
+     *String s = WeiboClient.get_byCookie(url, cookie);
+     */
+    public void getTextUtil(String url, String wechatUrl,String cookie) {
         while (true){
-            String s = WeiboClient.get_byCookie(url, "1");
-            List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid( "1");
+            List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid( cookie);
             // 确保超过2条（除首页外还有一条最新），且最新消息没有推送过，如推送过不再推送
             if (weiboReptiles.size()>=2 && !msg.equals(weiboReptiles.get(1).getContext())){
                 RestTemplate restTemplate = new RestTemplate();
@@ -153,7 +150,6 @@ public class WeiboClient {
     public static void main(String[] args) {
 
         while (true) {
-            String s = WeiboClient.get_byCookie("https://weibo.com/p/1005051646174132/home?from=page_100505_profile&wvr=6&mod=data&is_all=1#place", "1");
             List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid( "1");
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getForEntity("https://sc.ftqq.com/SCU40692Tccb6b97f9f07146f0b5ac909ca1bfcf35c3c6e3cd17d2.send?text=" + weiboReptiles.get(1).getContext(), String.class);
