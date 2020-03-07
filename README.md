@@ -1,6 +1,6 @@
 # CrawlWeibo
 
-Crawl Someone's Weibo text (for quick get and quickview )
+Crawl Someone's Weibo text (for quick get and quick view )
 
 爬取某个人的微博最新内容，并发送到微信端，方便快速获取，不必一直刷微博
 
