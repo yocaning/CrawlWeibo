@@ -129,16 +129,23 @@ public class WeiboClient {
 
     /**
      *String s = WeiboClient.get_byCookie(url, cookie);
+     * 更新推送逻辑，避免多条更新只发送一条情况
      */
     public void getTextUtil(String url, String wechatUrl,String cookie) {
         while (true){
             List<MvcWeiboReptile> weiboReptiles = WeiboClient.get_js_html_byuid( cookie);
             // 确保超过2条（除首页外还有一条最新），且最新消息没有推送过，如推送过不再推送
-            if (weiboReptiles.size()>=2 && !msg.equals(weiboReptiles.get(1).getContext())){
+            if (weiboReptiles.size()>=2 ){
                 RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getForEntity(wechatUrl + weiboReptiles.get(1).getContext(), String.class);
-                msg =weiboReptiles.get(1).getContext();
-                size =weiboReptiles.size();
+                //最多只发5条
+                size =weiboReptiles.size()>6?6:weiboReptiles.size();
+                //如果更新多条，循环发送
+                for (int i=1;i<size;i++){
+                    if (!msg.equals(weiboReptiles.get(i).getContext())){
+                        restTemplate.getForEntity(wechatUrl + weiboReptiles.get(i).getContext(), String.class);
+                        msg =weiboReptiles.get(i).getContext();
+                    }
+                }
             }
             try {
                 Thread.sleep(1000 * 60 * 10);

@@ -23,6 +23,7 @@ Crawl Someone's Weibo text (for quick get and quickview )
         - ~~示例~~：
        
         ``` {"userUrl":"https://weibo.com/p/1005051646174132/home?from=page_100505_profile&wvr=6&mod=data&is_all=1#place","weChatUrl":"https://sc.ftqq.com/SCU40692Tccb6b97f9f07146f0b5ac909ca1bfcf35c3c6e3cd17d2.send?text="}  ```
+        
         - 示例（2020-03-06更新）
             - cookie值可使用账号登录微博之后，打开浏览器控制台（F12），在控制台复制相关cookie
             
