@@ -26,6 +26,7 @@ public class CrawlWeiboTextController {
      * @poram  ParamDto
      * @param userUrl 需要快速获取的微博url
      * @param WeChatUrl server 酱提供的url
+     * @param cookie 微博上的cookie
      */
     @RequestMapping("/weiBo")
     public void crawlText(@RequestBody ParamDto paramDto){
