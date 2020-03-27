@@ -6,6 +6,9 @@ Crawl Someone's Weibo text (for quick get and quick view )
 
 （笔者是为了偷懒不想刷微博，不想影响工作状态，又想快速实时获取某炒股博主的最新weibo）
 
+``TODO 
+之后将考虑做成统一消息通知工具，支持对接多方平台，不仅限于爬取内容，也将支持api接口支持
+``
 ---
 
 - 前期参数准备
